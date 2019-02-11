@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timss.pf.dao.PersonRelationDao">
+
+    <sql id="Base_Column_List">
+          F.ID  businessId,
+          F.PERSON_ID  personId,
+          F.KIN_NAME  kinName,
+          F.RELATION  relation,
+          F.PHONE  phone
+	</sql>
+
+    <select id="queryPersonRelationByPersonId" resultType="com.timss.pf.bean.PersonRelation">
+        select
+        <include refid="Base_Column_List"/>
+        from ATD_PERSON_RELATION F
+        where F.PERSON_ID = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insert" parameterType="com.timss.pf.bean.PersonRelation">
+		insert into ATD_PERSON_RELATION(
+			ID,PERSON_ID,KIN_NAME,RELATION,PHONE
+		)values(
+			#{businessId,jdbcType=VARCHAR}, #{personId,jdbcType=VARCHAR}, #{kinName,jdbcType=VARCHAR}, #{relation,jdbcType=VARCHAR},
+			#{phone,jdbcType=VARCHAR}
+		)
+	</insert>
+    <delete id="deletePersonRelationById">
+		delete from ATD_PERSON_RELATION
+		where ID=#{id,jdbcType=VARCHAR}
+	</delete>
+    <delete id="deletePersonRelationByPersonId">
+		delete from ATD_PERSON_RELATION
+		where PERSON_ID=#{id,jdbcType=VARCHAR}
+	</delete>
+    <select id="getNewBeanList" resultType="com.timss.pf.bean.PersonRelation">
+        select
+        <include refid="Base_Column_List"/>
+        from ATD_PERSON_RELATION F
+        where F.ID=''
+    </select>
+
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timss.pf.dao.HirePersonInfoDao">
+
+    <sql id="Base_Column_List">
+		S.ID  businessId,
+		S.PERSON_ID personId,
+		S.RECRUIT_ID recruitId
+	</sql>
+    <select id="getHirePersonInfoList" resultType="com.timss.pf.bean.HirePersonInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from ATD_RECRUIT_PERSON S
+    </select>
+    <insert id="insert" parameterType="com.timss.pf.bean.HirePersonInfo">
+		insert into ATD_RECRUIT_PERSON(
+			ID,PERSON_ID,RECRUIT_ID
+		)values(
+			#{businessId,jdbcType=VARCHAR}, #{personId,jdbcType=VARCHAR}, #{recruitId,jdbcType=VARCHAR}
+		)
+	</insert>
+    <update id="update" parameterType="com.timss.pf.bean.HirePersonInfo">
+		update ATD_RECRUIT_PERSON
+		set PERSON_ID=#{personId,jdbcType=VARCHAR},RECRUIT_ID=#{recruitId,jdbcType=VARCHAR}
+		where ID=#{businessId,jdbcType=VARCHAR}
+
+	</update>
+    <select id="queryByRecruitId" parameterType="String" resultType="com.timss.pf.bean.HirePersonInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from ATD_RECRUIT_PERSON S
+        where S.RECRUIT_ID=#{recruitId,jdbcType=VARCHAR}
+    </select>
+    <select id="queryHirePersonInfoByPersonId" parameterType="String" resultType="com.timss.pf.bean.HirePersonInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from ATD_RECRUIT_PERSON S
+        left join ATD_RECRUIT_INFO R on S.RECRUIT_ID=R.ID
+        where S.PERSON_ID=#{id,jdbcType=VARCHAR}
+        and R.WF_STATUS='已归档'
+        order by R.CREATE_DATE desc
+    </select>
+</mapper>

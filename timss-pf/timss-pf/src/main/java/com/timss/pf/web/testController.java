@@ -13,7 +13,7 @@ public class testController {
     }
     public void test(){
 
-        System.out.println("这是dev分支");
+        System.out.println("这是master分支");
     }
 
 }

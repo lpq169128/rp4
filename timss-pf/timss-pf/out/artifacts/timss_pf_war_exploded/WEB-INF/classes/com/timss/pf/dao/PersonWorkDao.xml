@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timss.pf.dao.PersonWorkDao">
+
+    <sql id="Base_Column_List">
+          F.ID  businessId,
+          F.PERSON_ID  personId,
+          F.SHIP_ID  shipId,
+          F.SUCCESSION_DATE successionDate,
+          F.SHIFT_DATE shiftDate,
+          F.REASON reason,
+          F.CREATE_USER createuser,
+		  F.CREATE_DATE createdate,
+		  F.MODIFY_USER modifyuser,
+		  F.MODIFY_DATE modifydate
+	</sql>
+
+    <select id="queryPersonWorkByPersonId" resultType="com.timss.pf.bean.PersonWork">
+        select
+        <include refid="Base_Column_List"/>
+        from ATD_PERSON_WORK F
+        where F.PERSON_ID = #{id,jdbcType=VARCHAR}
+        order by F.CREATE_DATE desc
+    </select>
+
+    <insert id="insert" parameterType="com.timss.pf.bean.PersonWork">
+		insert into ATD_PERSON_WORK (
+			ID,PERSON_ID,SHIP_ID,SUCCESSION_DATE,SHIFT_DATE,REASON,CREATE_USER,CREATE_DATE
+		)values(
+			#{businessId,jdbcType=VARCHAR}, #{personId,jdbcType=VARCHAR}, #{shipId,jdbcType=VARCHAR}, #{successionDate,jdbcType=TIMESTAMP},
+			#{shiftDate,jdbcType=TIMESTAMP}, #{reason,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR},
+			#{createdate,jdbcType=TIMESTAMP}
+		)
+	</insert>
+    <update id="update">
+		update  ATD_PERSON_WORK
+		set PERSON_ID=#{personId,jdbcType=VARCHAR}, SHIP_ID=#{shipId,jdbcType=VARCHAR},SUCCESSION_DATE=#{successionDate,jdbcType=TIMESTAMP},
+		SHIFT_DATE=#{shiftDate,jdbcType=TIMESTAMP}, REASON=#{reason,jdbcType=VARCHAR},MODIFY_USER=#{modifyuser,jdbcType=VARCHAR},
+		MODIFY_DATE=#{modifydate,jdbcType=TIMESTAMP}
+		where ID=#{businessId,jdbcType=VARCHAR}
+	</update>
+</mapper>

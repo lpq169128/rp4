@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timss.pf.dao.ReimburseCostDao">
+
+    <sql id="Base_Column_List">
+		S.ID   businessId,
+        S.REIMBURSE_ID  reimburseId,
+        S.COST_TYPE  costType,
+        S.DESCRIPTION  description,
+        S.AMOUNT  amount,
+        S.REPLIED_AMOUNT  repliedAmount,
+        S.ATTRIBUTE1  attribute1,
+        S.ATTRIBUTE2  attribute2
+	</sql>
+
+    <insert id="insert" parameterType="com.timss.pf.bean.ReimburseCost">
+		insert into FIN_REIMBURSE_COST(
+			ID,REIMBURSE_ID,COST_TYPE,DESCRIPTION,AMOUNT,REPLIED_AMOUNT,ATTRIBUTE1,ATTRIBUTE2
+		)values(
+			#{businessId,jdbcType=VARCHAR}, #{reimburseId,jdbcType=VARCHAR}, #{costType,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+			#{amount,jdbcType=NUMERIC}, #{repliedAmount,jdbcType=NUMERIC}, #{attribute1,jdbcType=NUMERIC}, #{attribute2,jdbcType=NUMERIC}
+		)
+	</insert>
+    <update id="update" parameterType="com.timss.pf.bean.ReimburseCost">
+		update FIN_REIMBURSE_COST
+		set REIMBURSE_ID=#{reimburseId,jdbcType=VARCHAR},COST_TYPE=#{costType,jdbcType=VARCHAR}, DESCRIPTION=#{description,jdbcType=VARCHAR},
+			AMOUNT=#{amount,jdbcType=NUMERIC}, REPLIED_AMOUNT=#{repliedAmount,jdbcType=NUMERIC}, ATTRIBUTE1=#{attribute1,jdbcType=NUMERIC},
+			ATTRIBUTE2=#{attribute2,jdbcType=NUMERIC}
+		where ID=#{businessId,jdbcType=VARCHAR}
+
+	</update>
+    <select id="queryReimburseCostByReimburseId" parameterType="String" resultType="com.timss.pf.bean.ReimburseCost">
+        select
+        <include refid="Base_Column_List"/>
+        from FIN_REIMBURSE_COST S
+        where S.REIMBURSE_ID=#{reimburseId,jdbcType=VARCHAR}
+    </select>
+    <delete id="delete" parameterType="String">
+		delete from FIN_REIMBURSE_COST
+		where ID=#{businessId,jdbcType=VARCHAR}
+	</delete>
+
+</mapper>

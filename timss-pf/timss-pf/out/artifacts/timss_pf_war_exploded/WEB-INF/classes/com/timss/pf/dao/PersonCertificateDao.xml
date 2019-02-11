@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timss.pf.dao.PersonCertificateDao">
+
+    <sql id="Base_Column_List">
+          F.ID  businessId,
+          F.PERSON_ID  personId,
+          F.CARD_TYPE  cardType,
+          F.CARD_NO  cardNo,
+          F.CARD_DATE  cardDate,
+          F.CARD_LEVEL  cardLevel,
+          F.VALIDDATE  validDate
+	</sql>
+
+    <select id="queryPersonCertificateByPersonId" resultType="com.timss.pf.bean.PersonCertificate">
+        select
+        <include refid="Base_Column_List"/>
+        from ATD_PERSON_CERTIFICATE F
+        where F.PERSON_ID = #{id,jdbcType=VARCHAR}
+        order by NLSSORT(F.CARD_TYPE,'NLS_SORT = SCHINESE_PINYIN_M')
+    </select>
+
+    <insert id="insert" parameterType="com.timss.pf.bean.PersonCertificate">
+		insert into ATD_PERSON_CERTIFICATE (
+			ID,PERSON_ID,CARD_TYPE,CARD_NO,CARD_DATE,CARD_LEVEL,VALIDDATE
+		)values(
+			#{businessId,jdbcType=VARCHAR}, #{personId,jdbcType=VARCHAR}, #{cardType,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR},
+			#{cardDate,jdbcType=TIMESTAMP}, #{cardLevel,jdbcType=VARCHAR}, #{validDate,jdbcType=TIMESTAMP}
+		)
+	</insert>
+    <delete id="deletePersonCertificateById">
+		delete from ATD_PERSON_CERTIFICATE
+		where ID=#{id,jdbcType=VARCHAR}
+	</delete>
+    <delete id="deletePersonCertificateByPersonId">
+		delete from ATD_PERSON_CERTIFICATE
+		where PERSON_ID=#{id,jdbcType=VARCHAR}
+	</delete>
+    <select id="getNewBeanList" resultType="com.timss.pf.bean.PersonCertificate">
+        select
+        <include refid="Base_Column_List"/>
+        from ATD_PERSON_CERTIFICATE F
+        where F.ID=''
+    </select>
+
+</mapper>

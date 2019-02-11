@@ -1,0 +1,15 @@
+2019-01-23 10:18:23 [http-bio-8080-exec-1] [com.timss.facade.service.core.module.ModuleDataServiceImpl] start queryList:testDemo of HYG
+2019-01-23 10:18:23 [http-bio-8080-exec-1] [com.timss.facade.service.core.module.ModuleDataServiceImpl] prepared params in time:0ms
+2019-01-23 10:18:23 [http-bio-8080-exec-1] [com.timss.facade.service.core.module.ModuleDataServiceImpl] do queryList in time:455ms
+2019-01-23 10:18:23 [http-bio-8080-exec-1] [com.timss.facade.service.core.module.ModuleDataServiceImpl] fix result in time:0ms
+2019-01-23 10:18:23 [http-bio-8080-exec-1] [com.timss.facade.service.core.module.ModuleDataServiceImpl] finish queryList:testDemo of HYG in time:459ms
+2019-01-23 10:18:26 [http-bio-8080-exec-1] [com.timss.facade.interceptor.ProcessDetailInterceptor] begin @ProcessDetail in ModuleData com.yudean.module.service.ModuleDataService.getNewBean(String,SecureUser)
+2019-01-23 10:18:26 [http-bio-8080-exec-1] [com.yudean.wf.service.impl.ChitaService] start queryProcessDetail
+2019-01-23 10:18:27 [http-bio-8080-exec-1] [com.yudean.wf.service.impl.ChitaService] moduleWFConfService.queryByNodeDefKey in time:375ms
+2019-01-23 10:18:27 [http-bio-8080-exec-1] [com.yudean.wf.service.impl.ChitaService] finish queryProcessDetail->businessType:testDemo businessId:null processDefKey:com.timss.hyg.pf.testDemo processInstId:null by:timss4u in time:486ms
+2019-01-23 10:18:27 [http-bio-8080-exec-1] [com.timss.facade.interceptor.ProcessDetailInterceptor] chitaService.queryProcessDetail in time:486ms
+2019-01-23 10:18:27 [http-bio-8080-exec-1] [com.timss.facade.interceptor.ProcessDetailInterceptor] end @ProcessDetail in ModuleData com.yudean.module.service.ModuleDataService.getNewBean(String,SecureUser) in time:487ms
+2019-01-23 10:18:27 [http-bio-8080-exec-1] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModule in time:3ms
+2019-01-23 10:18:27 [http-bio-8080-exec-1] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModuleDetail in time:366ms
+2019-01-23 10:18:27 [http-bio-8080-exec-1] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams fixModuleByBean in time:0ms
+2019-01-23 10:18:27 [http-bio-8080-exec-1] [com.timss.facade.service.abstr.AbstractServiceImpl] finish getPageParams in time:371ms

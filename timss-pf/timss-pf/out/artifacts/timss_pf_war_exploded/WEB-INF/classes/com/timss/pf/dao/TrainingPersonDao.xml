@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timss.pf.dao.TrainingPersonDao">
+    <sql id="Base_Column_List">
+        API.ID personId,
+        SU.NAME name,
+        API.SEX sex,
+        API.ID_CARD idCard,
+        API.GRADUATE_SCHOOL graduateSchool,
+        API.HIGHEST_EDUCATION highestEducation,
+        SU.MOBILE mobile,
+        API.CREATE_USER createuser,
+        API.CREATE_DATE createdate,
+        API.MODIFY_USER modifyuser,
+        API.MODIFY_DATE modifydate
+	</sql>
+
+    <select id="queryList" resultType="com.timss.pf.bean.TrainingPerson">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        ATD_PERSON_INFO API
+        LEFT JOIN SEC_USER SU ON SU.USER_ID = API.USER_ID
+        WHERE API.DEL_IND = 'N' AND API.JOB_STATUS = 'Y'
+    </select>
+
+    <select id="querTrainingPersonByTrainingId" parameterType="String" resultType="com.timss.pf.bean.TrainingPerson">
+        SELECT
+        ATP.TRAINING_ID trainingId,
+        ATP.DUTIES duties,
+        ATP.DUTIES_DATE dutiesDate,
+        <include refid="Base_Column_List"/>
+        FROM
+        ATD_TRAINING_PERSON ATP
+        LEFT JOIN ATD_PERSON_INFO API ON ATP.PERSON_ID = API."ID"
+        LEFT JOIN SEC_USER SU ON SU.USER_ID = API.USER_ID
+        where API.DEL_IND = 'N' AND API.JOB_STATUS = 'Y' AND ATP.TRAINING_ID = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="queryTrainingPersonById" parameterType="String" resultType="com.timss.pf.bean.TrainingPerson">
+        SELECT
+        ATP.TRAINING_ID trainingId
+        FROM
+        ATD_TRAINING_PERSON ATP
+        where ATP.PERSON_ID=#{id,jdbcType=VARCHAR}
+        and ATP.DUTIES is null
+    </select>
+
+    <insert id="insert" parameterType="com.timss.pf.bean.TrainingPerson">
+        insert into ATD_TRAINING_PERSON
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            ID,
+            TRAINING_ID,
+            PERSON_ID,
+            <if test="duties != null">
+                DUTIES,
+            </if>
+            <if test="dutiesDate != null">
+                DUTIES_DATE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{id,jdbcType=VARCHAR},
+            #{trainingId,jdbcType=VARCHAR},
+            #{personId,jdbcType=VARCHAR},
+            <if test="duties != null">
+                #{duties,jdbcType=VARCHAR},
+            </if>
+            <if test="dutiesDate != null">
+                #{dutiesDate,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="deleteTrainingPersonByTrainingId">
+		delete from ATD_TRAINING_PERSON
+		where TRAINING_ID=#{id,jdbcType=VARCHAR}
+	</delete>
+</mapper>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timss.pf.dao.PersonVoyageDao">
+
+    <sql id="Base_Column_List">
+          F.ID  businessId,
+          F.SAILOR_ID  soilorId,
+          F.SHIP_NAME  shipName,
+          F.DUTIES  duties,
+          F.POWER  power,
+          F.NATIONALITY  nationality,
+          F.COMPANY  company,
+          F.IN_SHIP_DATE  inShipDate,
+          F.OUT_SHIP_DATE  outShipDate,
+          F.AREA  area,
+          F.DESCRIPTION  discription,
+          F.CREATE_USER createuser,
+		  F.CREATE_DATE createdate,
+		  F.MODIFY_USER modifyuser,
+		  F.MODIFY_DATE modifydate,
+		  F.DIFFERENT different
+	</sql>
+
+    <select id="queryPersonVoyageByPersonId" resultType="com.timss.pf.bean.PersonVoyage">
+        select
+        <include refid="Base_Column_List"/>
+        from ATD_PERSON_VOYAGE F
+        where F.SAILOR_ID = #{id,jdbcType=VARCHAR}
+        and F.IN_SHIP_DATE>=trunc(sysdate)-(INTERVAL '5' YEAR)
+        order by F.IN_SHIP_DATE desc,F.OUT_SHIP_DATE desc
+    </select>
+
+
+    <select id="queryPersonVoyageAsCreateTimeByPersonId" resultType="com.timss.pf.bean.PersonVoyage">
+        select
+        <include refid="Base_Column_List"/>
+        from ATD_PERSON_VOYAGE F
+        where F.SAILOR_ID = #{id,jdbcType=VARCHAR}
+        order by F.CREATE_DATE desc
+    </select>
+
+    <insert id="insert" parameterType="com.timss.pf.bean.PersonVoyage">
+		insert into ATD_PERSON_VOYAGE (
+			ID,SAILOR_ID,SHIP_NAME,DUTIES,NATIONALITY,COMPANY,IN_SHIP_DATE,OUT_SHIP_DATE,AREA,DESCRIPTION,POWER,CREATE_USER,CREATE_DATE,DIFFERENT
+		)values(
+			#{businessId,jdbcType=VARCHAR}, #{soilorId,jdbcType=VARCHAR}, #{shipName,jdbcType=VARCHAR}, #{duties,jdbcType=VARCHAR},
+			#{nationality,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, #{inShipDate,jdbcType=TIMESTAMP},
+			#{outShipDate,jdbcType=TIMESTAMP}, #{area,jdbcType=VARCHAR}, #{discription,jdbcType=VARCHAR},#{power,jdbcType=VARCHAR},
+			#{createuser,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{different,jdbcType=VARCHAR}
+		)
+	</insert>
+    <update id="update">
+		update  ATD_PERSON_VOYAGE
+		set SAILOR_ID=#{soilorId,jdbcType=VARCHAR}, SHIP_NAME=#{shipName,jdbcType=VARCHAR},DUTIES=#{duties,jdbcType=VARCHAR},
+		POWER=#{power,jdbcType=VARCHAR}, COMPANY=#{company,jdbcType=VARCHAR},IN_SHIP_DATE=#{inShipDate,jdbcType=TIMESTAMP},
+		OUT_SHIP_DATE=#{outShipDate,jdbcType=TIMESTAMP},AREA=#{area,jdbcType=VARCHAR},DESCRIPTION=#{discription,jdbcType=VARCHAR},
+		MODIFY_USER=#{modifyuser,jdbcType=VARCHAR},MODIFY_DATE=#{modifydate,jdbcType=TIMESTAMP},DIFFERENT=#{different,jdbcType=VARCHAR}
+		where ID=#{businessId,jdbcType=VARCHAR}
+	</update>
+    <delete id="deletePersonVoyageById">
+		delete from ATD_PERSON_VOYAGE
+		where ID=#{id,jdbcType=VARCHAR}
+	</delete>
+    <delete id="deletePersonVoyageByPersonId">
+		delete from ATD_PERSON_VOYAGE
+		where SAILOR_ID=#{id,jdbcType=VARCHAR}
+	</delete>
+</mapper>

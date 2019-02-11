@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timss.pf.dao.PersonExperinenceDao">
+
+    <sql id="Base_Column_List">
+          F.ID  businessId,
+          F.PERSON_ID  personId,
+          F.START_DATE  startDate,
+          F.END_DATE  endDate,
+          F.COMPANY  company,
+          F.DUTIES  duties,
+          F.REMARK  remark
+	</sql>
+
+    <select id="queryPersonExperinenceByPersonId" resultType="com.timss.pf.bean.PersonExperinence">
+        select
+        <include refid="Base_Column_List"/>
+        from ATD_PERSON_EXPERINENCE F
+        where F.PERSON_ID = #{id,jdbcType=VARCHAR}
+        order by F.START_DATE desc, F.END_DATE desc
+    </select>
+
+    <insert id="insert" parameterType="com.timss.pf.bean.PersonExperinence">
+		insert into ATD_PERSON_EXPERINENCE (
+			ID,PERSON_ID,START_DATE,END_DATE,COMPANY,DUTIES,REMARK
+		)values(
+			#{businessId,jdbcType=VARCHAR}, #{personId,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP},
+			#{company,jdbcType=VARCHAR}, #{duties,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+		)
+	</insert>
+    <delete id="deletePersonExperinenceById">
+		delete from ATD_PERSON_EXPERINENCE
+		where ID=#{id,jdbcType=VARCHAR}
+	</delete>
+    <delete id="deletePersonExperinenceByPersonId">
+		delete from ATD_PERSON_EXPERINENCE
+		where PERSON_ID=#{id,jdbcType=VARCHAR}
+	</delete>
+</mapper>

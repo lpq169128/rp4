@@ -1,0 +1,25 @@
+2018-12-11 08:49:46 [http-bio-8080-exec-6] [com.timss.facade.service.core.module.ModuleDataServiceImpl] start queryList:testDemo of HYG
+2018-12-11 08:49:46 [http-bio-8080-exec-6] [com.timss.facade.service.core.module.ModuleDataServiceImpl] prepared params in time:0ms
+2018-12-11 08:49:46 [http-bio-8080-exec-6] [com.timss.facade.service.core.module.ModuleDataServiceImpl] do queryList in time:30ms
+2018-12-11 08:49:46 [http-bio-8080-exec-6] [com.timss.facade.service.core.module.ModuleDataServiceImpl] fix result in time:0ms
+2018-12-11 08:49:46 [http-bio-8080-exec-6] [com.timss.facade.service.core.module.ModuleDataServiceImpl] finish queryList:testDemo of HYG in time:32ms
+2018-12-11 08:49:49 [http-bio-8080-exec-6] [com.timss.facade.service.core.module.ModuleDataServiceImpl] start queryList:testDemo of HYG
+2018-12-11 08:49:49 [http-bio-8080-exec-6] [com.timss.facade.service.core.module.ModuleDataServiceImpl] prepared params in time:0ms
+2018-12-11 08:49:49 [http-bio-8080-exec-6] [com.timss.facade.service.core.module.ModuleDataServiceImpl] do queryList in time:7ms
+2018-12-11 08:49:49 [http-bio-8080-exec-6] [com.timss.facade.service.core.module.ModuleDataServiceImpl] fix result in time:0ms
+2018-12-11 08:49:49 [http-bio-8080-exec-6] [com.timss.facade.service.core.module.ModuleDataServiceImpl] finish queryList:testDemo of HYG in time:8ms
+2018-12-11 08:49:52 [http-bio-8080-exec-6] [com.timss.facade.interceptor.ProcessDetailInterceptor] begin @ProcessDetail in ModuleData com.yudean.module.service.ModuleDataService.getNewBean(String,SecureUser)
+2018-12-11 08:49:52 [http-bio-8080-exec-6] [com.yudean.wf.service.impl.ChitaService] start queryProcessDetail
+2018-12-11 08:49:55 [http-bio-8080-exec-6] [com.yudean.wf.service.impl.ChitaService] moduleWFConfService.queryByNodeDefKey in time:15ms
+2018-12-11 08:49:55 [http-bio-8080-exec-6] [com.yudean.wf.service.impl.ChitaService] finish queryProcessDetail->businessType:testDemo businessId:null processDefKey:com.timss.hyg.pf.testDemo processInstId:null by:timss4u in time:2201ms
+2018-12-11 08:49:55 [http-bio-8080-exec-6] [com.timss.facade.interceptor.ProcessDetailInterceptor] chitaService.queryProcessDetail in time:2201ms
+2018-12-11 08:49:55 [http-bio-8080-exec-6] [com.timss.facade.interceptor.ProcessDetailInterceptor] end @ProcessDetail in ModuleData com.yudean.module.service.ModuleDataService.getNewBean(String,SecureUser) in time:2202ms
+2018-12-11 08:49:55 [http-bio-8080-exec-6] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModule in time:3ms
+2018-12-11 08:49:55 [http-bio-8080-exec-6] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModuleDetail in time:36ms
+2018-12-11 08:49:55 [http-bio-8080-exec-6] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams fixModuleByBean in time:0ms
+2018-12-11 08:49:55 [http-bio-8080-exec-6] [com.timss.facade.service.abstr.AbstractServiceImpl] finish getPageParams in time:40ms
+2018-12-11 10:07:49 [http-bio-8080-exec-5] [com.timss.facade.service.core.module.ModuleDataServiceImpl] start queryList:testDemo of HYG
+2018-12-11 10:07:49 [http-bio-8080-exec-5] [com.timss.facade.service.core.module.ModuleDataServiceImpl] prepared params in time:0ms
+2018-12-11 10:07:49 [http-bio-8080-exec-5] [com.timss.facade.service.core.module.ModuleDataServiceImpl] do queryList in time:27ms
+2018-12-11 10:07:49 [http-bio-8080-exec-5] [com.timss.facade.service.core.module.ModuleDataServiceImpl] fix result in time:0ms
+2018-12-11 10:07:49 [http-bio-8080-exec-5] [com.timss.facade.service.core.module.ModuleDataServiceImpl] finish queryList:testDemo of HYG in time:30ms

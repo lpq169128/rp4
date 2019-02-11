@@ -1,0 +1,185 @@
+2018-12-10 09:24:06 [http-bio-8080-exec-10] [com.timss.facade.service.core.module.ModuleDataServiceImpl] start queryList:testDemo of HYG
+2018-12-10 09:24:06 [http-bio-8080-exec-10] [com.timss.facade.service.core.module.ModuleDataServiceImpl] prepared params in time:0ms
+2018-12-10 09:24:06 [http-bio-8080-exec-10] [com.timss.facade.service.core.module.ModuleDataServiceImpl] do queryList in time:226ms
+2018-12-10 09:24:06 [http-bio-8080-exec-10] [com.timss.facade.service.core.module.ModuleDataServiceImpl] fix result in time:0ms
+2018-12-10 09:24:06 [http-bio-8080-exec-10] [com.timss.facade.service.core.module.ModuleDataServiceImpl] finish queryList:testDemo of HYG in time:230ms
+2018-12-10 09:24:09 [http-bio-8080-exec-10] [com.timss.facade.interceptor.ProcessDetailInterceptor] begin @ProcessDetail in ModuleData com.yudean.module.service.ModuleDataService.getNewBean(String,SecureUser)
+2018-12-10 09:24:09 [http-bio-8080-exec-10] [com.yudean.wf.service.impl.ChitaService] start queryProcessDetail
+2018-12-10 09:24:16 [http-bio-8080-exec-10] [com.yudean.wf.service.impl.ChitaService] moduleWFConfService.queryByNodeDefKey in time:271ms
+2018-12-10 09:24:16 [http-bio-8080-exec-10] [com.yudean.wf.service.impl.ChitaService] finish queryProcessDetail->businessType:testDemo businessId:null processDefKey:com.timss.hyg.pf.testDemo processInstId:null by:timss4u in time:6659ms
+2018-12-10 09:24:16 [http-bio-8080-exec-10] [com.timss.facade.interceptor.ProcessDetailInterceptor] chitaService.queryProcessDetail in time:6659ms
+2018-12-10 09:24:16 [http-bio-8080-exec-10] [com.timss.facade.interceptor.ProcessDetailInterceptor] end @ProcessDetail in ModuleData com.yudean.module.service.ModuleDataService.getNewBean(String,SecureUser) in time:6661ms
+2018-12-10 09:24:16 [http-bio-8080-exec-10] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModule in time:3ms
+2018-12-10 09:24:17 [http-bio-8080-exec-10] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModuleDetail in time:594ms
+2018-12-10 09:24:17 [http-bio-8080-exec-10] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams fixModuleByBean in time:0ms
+2018-12-10 09:24:17 [http-bio-8080-exec-10] [com.timss.facade.service.abstr.AbstractServiceImpl] finish getPageParams in time:598ms
+2018-12-10 09:24:17 [http-bio-8080-exec-9] [com.timss.facade.service.core.module.ModuleDataServiceImpl] start queryList:testDemo of HYG
+2018-12-10 09:24:17 [http-bio-8080-exec-9] [com.timss.facade.service.core.module.ModuleDataServiceImpl] prepared params in time:0ms
+2018-12-10 09:24:17 [http-bio-8080-exec-9] [com.timss.facade.service.core.module.ModuleDataServiceImpl] do queryList in time:13ms
+2018-12-10 09:24:17 [http-bio-8080-exec-9] [com.timss.facade.service.core.module.ModuleDataServiceImpl] fix result in time:0ms
+2018-12-10 09:24:17 [http-bio-8080-exec-9] [com.timss.facade.service.core.module.ModuleDataServiceImpl] finish queryList:testDemo of HYG in time:22ms
+2018-12-10 09:24:37 [http-bio-8080-exec-4] [com.timss.facade.service.core.module.ModuleDataServiceImpl] start queryList:testDemo of HYG
+2018-12-10 09:24:37 [http-bio-8080-exec-4] [com.timss.facade.service.core.module.ModuleDataServiceImpl] prepared params in time:0ms
+2018-12-10 09:24:37 [http-bio-8080-exec-4] [com.timss.facade.service.core.module.ModuleDataServiceImpl] do queryList in time:12ms
+2018-12-10 09:24:37 [http-bio-8080-exec-4] [com.timss.facade.service.core.module.ModuleDataServiceImpl] fix result in time:0ms
+2018-12-10 09:24:37 [http-bio-8080-exec-4] [com.timss.facade.service.core.module.ModuleDataServiceImpl] finish queryList:testDemo of HYG in time:14ms
+2018-12-10 09:24:40 [http-bio-8080-exec-4] [com.timss.facade.interceptor.ProcessDetailInterceptor] begin @ProcessDetail in ModuleData com.yudean.module.service.ModuleDataService.getNewBean(String,SecureUser)
+2018-12-10 09:24:40 [http-bio-8080-exec-4] [com.yudean.wf.service.impl.ChitaService] start queryProcessDetail
+2018-12-10 09:24:40 [http-bio-8080-exec-4] [com.yudean.wf.service.impl.ChitaService] moduleWFConfService.queryByNodeDefKey in time:10ms
+2018-12-10 09:24:40 [http-bio-8080-exec-4] [com.yudean.wf.service.impl.ChitaService] finish queryProcessDetail->businessType:testDemo businessId:null processDefKey:com.timss.hyg.pf.testDemo processInstId:null by:timss4u in time:50ms
+2018-12-10 09:24:40 [http-bio-8080-exec-4] [com.timss.facade.interceptor.ProcessDetailInterceptor] chitaService.queryProcessDetail in time:51ms
+2018-12-10 09:24:40 [http-bio-8080-exec-4] [com.timss.facade.interceptor.ProcessDetailInterceptor] end @ProcessDetail in ModuleData com.yudean.module.service.ModuleDataService.getNewBean(String,SecureUser) in time:52ms
+2018-12-10 09:24:40 [http-bio-8080-exec-4] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModule in time:3ms
+2018-12-10 09:24:40 [http-bio-8080-exec-4] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModuleDetail in time:37ms
+2018-12-10 09:24:40 [http-bio-8080-exec-4] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams fixModuleByBean in time:0ms
+2018-12-10 09:24:40 [http-bio-8080-exec-4] [com.timss.facade.service.abstr.AbstractServiceImpl] finish getPageParams in time:41ms
+2018-12-10 09:25:31 [http-bio-8080-exec-1] [com.timss.facade.service.core.module.ModuleDataServiceImpl] start queryList:testDemo of HYG
+2018-12-10 09:25:31 [http-bio-8080-exec-1] [com.timss.facade.service.core.module.ModuleDataServiceImpl] prepared params in time:0ms
+2018-12-10 09:25:31 [http-bio-8080-exec-1] [com.timss.facade.service.core.module.ModuleDataServiceImpl] do queryList in time:14ms
+2018-12-10 09:25:31 [http-bio-8080-exec-1] [com.timss.facade.service.core.module.ModuleDataServiceImpl] fix result in time:0ms
+2018-12-10 09:25:31 [http-bio-8080-exec-1] [com.timss.facade.service.core.module.ModuleDataServiceImpl] finish queryList:testDemo of HYG in time:15ms
+2018-12-10 09:27:18 [http-bio-8080-exec-2] [com.yudean.todo.web.TodoController] start operate 
+	operateData:{"operation":"save","submitType":null,"businessId":null,"businessNo":null,"businessType":"testDemo","businessSiteId":"HYG","currentTaskId":null,"processInstId":null,"status":"草稿","destTask":null,"participants":null,"auditMsg":null,"relatedData":"{}"}
+	businessData:{"businessId":null,"createUserName":"超级管理员","createdate":null,"businessNo":null,"wfStatus":"草稿","businessType":"testDemo","siteid":"HYG","insertItemMap":{"form1":{"testUser":"field1"}},"updateItemMap":{},"deleteItemMap":{}}
+2018-12-10 09:27:18 [http-bio-8080-exec-2] [com.yudean.todo.web.TodoController] prepared params in time:277ms
+2018-12-10 09:27:18 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfOperateServiceImpl] start operate:save
+2018-12-10 09:27:18 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] convertBean JSON.parseObject in time:2ms
+2018-12-10 09:27:18 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] convertBean getModule in time:3ms
+2018-12-10 09:27:18 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] finish convertBean in time:6ms
+2018-12-10 09:27:18 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfOperateServiceImpl] valid and prepared params in time:34ms
+2018-12-10 09:27:18 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfAbstractServiceImpl] start save
+2018-12-10 09:27:18 [http-bio-8080-exec-2] [com.timss.facade.service.core.module.ModuleDataServiceImpl] saveItem in time:219ms
+2018-12-10 09:27:18 [http-bio-8080-exec-2] [com.timss.facade.service.core.module.ModuleDataServiceImpl] insert in time:268ms
+2018-12-10 09:27:18 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfAbstractServiceImpl] insertOrUpdate in time:300ms
+2018-12-10 09:27:18 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfAbstractServiceImpl] homepageService.create in time:244ms
+2018-12-10 09:27:18 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfAbstractServiceImpl] finish save in time:586ms
+2018-12-10 09:27:18 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfOperateServiceImpl] invoke service operation:save in time:588ms
+2018-12-10 09:27:18 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfOperateServiceImpl] finish operate:save in time:623ms
+2018-12-10 09:27:19 [http-bio-8080-exec-2] [com.timss.facade.service.core.module.ModuleDataServiceImpl] queryById in time:11ms
+2018-12-10 09:27:19 [http-bio-8080-exec-2] [com.timss.facade.service.core.module.ModuleDataServiceImpl] setItem in time:54ms
+2018-12-10 09:27:20 [http-bio-8080-exec-2] [com.timss.facade.interceptor.ProcessDetailInterceptor] begin @ProcessDetail in ItcBusinessBean com.yudean.mvc.service.abstr.AbstractService.queryDetail(ItcBusinessBean,SecureUser)
+2018-12-10 09:27:20 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] start queryProcessDetail
+2018-12-10 09:27:20 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] iwfProcessBusinessManager.queryByBusinessIdAndType:testDemo testDemo_HYG_bw1vcyq2j16qmyah in time:12ms
+2018-12-10 09:27:20 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] iwfProcessBusinessManager.queryHistoryByBusinessIdAndType:testDemo testDemo_HYG_bw1vcyq2j16qmyah in time:66ms
+2018-12-10 09:27:20 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] moduleWFConfService.queryByNodeDefKey in time:9ms
+2018-12-10 09:27:20 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] finish queryProcessDetail->businessType:testDemo businessId:testDemo_HYG_bw1vcyq2j16qmyah processDefKey:com.timss.hyg.pf.testDemo processInstId:null by:timss4u in time:140ms
+2018-12-10 09:27:20 [http-bio-8080-exec-2] [com.timss.facade.interceptor.ProcessDetailInterceptor] chitaService.queryProcessDetail in time:141ms
+2018-12-10 09:27:20 [http-bio-8080-exec-2] [com.timss.facade.interceptor.ProcessDetailInterceptor] end @ProcessDetail in ItcBusinessBean com.yudean.mvc.service.abstr.AbstractService.queryDetail(ItcBusinessBean,SecureUser) in time:1184ms
+2018-12-10 09:27:20 [http-bio-8080-exec-2] [com.timss.facade.service.core.module.ModuleDataServiceImpl] updateAuditStatus in time:6ms
+2018-12-10 09:27:20 [http-bio-8080-exec-2] [com.yudean.todo.web.TodoController] do wfOperation save in time:1896ms
+2018-12-10 09:27:20 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModule in time:8ms
+2018-12-10 09:27:20 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModuleDetail in time:28ms
+2018-12-10 09:27:20 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams fixModuleByBean in time:0ms
+2018-12-10 09:27:20 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] finish getPageParams in time:36ms
+2018-12-10 09:27:20 [http-bio-8080-exec-2] [com.yudean.todo.web.TodoController] getPageParams in time:39ms
+2018-12-10 09:27:20 [http-bio-8080-exec-2] [com.yudean.todo.web.TodoController] finish operate save in time:2213ms
+2018-12-10 09:27:31 [http-bio-8080-exec-2] [com.timss.facade.service.core.module.ModuleDataServiceImpl] queryById in time:6ms
+2018-12-10 09:27:31 [http-bio-8080-exec-2] [com.timss.facade.service.core.module.ModuleDataServiceImpl] setItem in time:13ms
+2018-12-10 09:27:31 [http-bio-8080-exec-2] [com.timss.facade.interceptor.ProcessDetailInterceptor] begin @ProcessDetail in ItcBusinessBean com.yudean.mvc.service.abstr.AbstractService.queryDetail(ItcBusinessBean,SecureUser)
+2018-12-10 09:27:31 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] start queryProcessDetail
+2018-12-10 09:27:31 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] iwfProcessBusinessManager.queryByBusinessIdAndType:testDemo testDemo_HYG_bw1vcyq2j16qmyah in time:5ms
+2018-12-10 09:27:31 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] iwfProcessBusinessManager.queryHistoryByBusinessIdAndType:testDemo testDemo_HYG_bw1vcyq2j16qmyah in time:6ms
+2018-12-10 09:27:31 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] moduleWFConfService.queryByNodeDefKey in time:9ms
+2018-12-10 09:27:31 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] finish queryProcessDetail->businessType:testDemo businessId:testDemo_HYG_bw1vcyq2j16qmyah processDefKey:com.timss.hyg.pf.testDemo processInstId:null by:timss4u in time:89ms
+2018-12-10 09:27:31 [http-bio-8080-exec-2] [com.timss.facade.interceptor.ProcessDetailInterceptor] chitaService.queryProcessDetail in time:89ms
+2018-12-10 09:27:31 [http-bio-8080-exec-2] [com.timss.facade.interceptor.ProcessDetailInterceptor] end @ProcessDetail in ItcBusinessBean com.yudean.mvc.service.abstr.AbstractService.queryDetail(ItcBusinessBean,SecureUser) in time:89ms
+2018-12-10 09:27:31 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModule in time:14ms
+2018-12-10 09:27:31 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModuleDetail in time:29ms
+2018-12-10 09:27:31 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams fixModuleByBean in time:0ms
+2018-12-10 09:27:31 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] finish getPageParams in time:44ms
+2018-12-10 09:27:36 [http-bio-8080-exec-2] [com.yudean.todo.web.TodoController] start operate 
+	operateData:{"operation":"commit","submitType":null,"businessId":"testDemo_HYG_bw1vcyq2j16qmyah","businessNo":"DFS20181210001","businessType":"testDemo","businessSiteId":"HYG","currentTaskId":null,"processInstId":null,"status":"草稿","destTask":null,"participants":null,"auditMsg":null,"relatedData":"{}"}
+	businessData:{"businessId":"testDemo_HYG_bw1vcyq2j16qmyah","createUserName":"超级管理员","createdate":1544405238000,"businessNo":"DFS20181210001","wfStatus":"草稿","businessType":"testDemo","siteid":"HYG","insertItemMap":{},"updateItemMap":{"form1":{"businessId":"testDemo_HYG_bw1vcyq2j16qmyah_form1_3fk5h711n1l1hn0e","testUser":"field1"}},"deleteItemMap":{}}
+2018-12-10 09:27:36 [http-bio-8080-exec-2] [com.yudean.todo.web.TodoController] prepared params in time:2ms
+2018-12-10 09:27:36 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfOperateServiceImpl] start operate:commit
+2018-12-10 09:27:36 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] convertBean JSON.parseObject in time:1ms
+2018-12-10 09:27:36 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] convertBean getModule in time:3ms
+2018-12-10 09:27:36 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] finish convertBean in time:5ms
+2018-12-10 09:27:36 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfOperateServiceImpl] valid and prepared params in time:7ms
+2018-12-10 09:27:36 [http-bio-8080-exec-2] [com.timss.facade.interceptor.StartProcessInterceptor] begin @StartProcess in WFBean com.yudean.mvc.service.abstr.WfAbstractService.commit(WFBean,SecureUser)
+2018-12-10 09:27:36 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfAbstractServiceImpl] start save
+2018-12-10 09:27:36 [http-bio-8080-exec-2] [com.timss.facade.service.core.module.ModuleDataServiceImpl] saveItem in time:20ms
+2018-12-10 09:27:36 [http-bio-8080-exec-2] [com.timss.facade.service.core.module.ModuleDataServiceImpl] update in time:29ms
+2018-12-10 09:27:36 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfAbstractServiceImpl] insertOrUpdate in time:36ms
+2018-12-10 09:27:38 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfAbstractServiceImpl] homepageService.Delete in time:1475ms
+2018-12-10 09:27:38 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfAbstractServiceImpl] homepageService.create in time:9ms
+2018-12-10 09:27:38 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfAbstractServiceImpl] finish save in time:1559ms
+2018-12-10 09:27:38 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] start start:testDemo testDemo_HYG_bw1vcyq2j16qmyah
+2018-12-10 09:27:41 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] businessFacade.createAndStartProcInst:com.timss.hyg.pf.testDemo processInstId:1 in time:3506ms
+2018-12-10 09:27:41 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] businessFacade.queryTasksAfterProcessStart:1 in time:166ms
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] iwfProcessBusinessManager.insert in time:40ms
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] finish start:testDemo testDemo_HYG_bw1vcyq2j16qmyah result:1 in time:4407ms
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.timss.facade.interceptor.StartProcessInterceptor] chitaService.startProcess in time:4408ms
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.timss.facade.service.core.module.ModuleDataServiceImpl] queryById in time:3ms
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.timss.facade.service.core.module.ModuleDataServiceImpl] setItem in time:17ms
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.timss.facade.interceptor.ProcessDetailInterceptor] begin @ProcessDetail in ItcBusinessBean com.yudean.mvc.service.abstr.AbstractService.queryDetail(ItcBusinessBean,SecureUser)
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] start queryProcessDetail
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] iwfProcessBusinessManager.queryByBusinessIdAndType:testDemo testDemo_HYG_bw1vcyq2j16qmyah in time:5ms
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] changeWfProcessBusinessToWFBean in time:190ms
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] moduleWFConfService.queryByNodeDefKey in time:14ms
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] finish queryProcessDetail->businessType:testDemo businessId:testDemo_HYG_bw1vcyq2j16qmyah processDefKey:com.timss.hyg.pf.testDemo processInstId:1 by:timss4u in time:223ms
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.timss.facade.interceptor.ProcessDetailInterceptor] chitaService.queryProcessDetail in time:224ms
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.timss.facade.interceptor.ProcessDetailInterceptor] end @ProcessDetail in ItcBusinessBean com.yudean.mvc.service.abstr.AbstractService.queryDetail(ItcBusinessBean,SecureUser) in time:225ms
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.timss.facade.service.core.module.ModuleDataServiceImpl] updateAuditStatus in time:6ms
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.timss.facade.interceptor.StartProcessInterceptor] refreshBeanAndUpdateStatus in time:258ms
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.timss.facade.interceptor.StartProcessInterceptor] end @StartProcess in WFBean com.yudean.mvc.service.abstr.WfAbstractService.commit(WFBean,SecureUser) in time:6229ms
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfOperateServiceImpl] invoke service operation:commit in time:6239ms
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfOperateServiceImpl] finish operate:commit in time:6247ms
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.yudean.todo.web.TodoController] do wfOperation commit in time:6250ms
+2018-12-10 09:27:42 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModule in time:5ms
+2018-12-10 09:27:43 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModuleDetail in time:84ms
+2018-12-10 09:27:43 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams fixModuleByBean in time:0ms
+2018-12-10 09:27:43 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] finish getPageParams in time:90ms
+2018-12-10 09:27:43 [http-bio-8080-exec-2] [com.yudean.todo.web.TodoController] getPageParams in time:93ms
+2018-12-10 09:27:43 [http-bio-8080-exec-2] [com.yudean.todo.web.TodoController] finish operate commit in time:6346ms
+2018-12-10 09:27:43 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] start getNextActivitiesMaybeArrived:1
+2018-12-10 09:27:43 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] queryTaskDetail in time:43ms
+2018-12-10 09:27:43 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] businessFacade.getNextActivitiesMaybeArrived in time:171ms
+2018-12-10 09:27:43 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] getExtendAttribute:secondActivty in time:116ms
+2018-12-10 09:27:43 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] finish getNextActivitiesMaybeArrived:1 in time:387ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.yudean.todo.web.TodoController] start operate 
+	operateData:{"operation":"delete","submitType":null,"businessId":"testDemo_HYG_bw1vcyq2j16qmyah","businessNo":"DFS20181210001","businessType":"testDemo","businessSiteId":"HYG","currentTaskId":"1","processInstId":"1","status":"草稿","destTask":null,"participants":null,"auditMsg":null,"relatedData":"{}"}
+	businessData:{"businessId":"testDemo_HYG_bw1vcyq2j16qmyah","createUserName":"超级管理员","createdate":1544405262000,"businessNo":"DFS20181210001","wfStatus":"草稿","businessType":"testDemo","siteid":"HYG","insertItemMap":{},"updateItemMap":{"form1":{"businessId":"testDemo_HYG_bw1vcyq2j16qmyah_form1_3fk5h711n1l1hn0e","testUser":"field1"}},"deleteItemMap":{}}
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.yudean.todo.web.TodoController] prepared params in time:5ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfOperateServiceImpl] start operate:delete
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] convertBean JSON.parseObject in time:1ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] convertBean getModule in time:2ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] finish convertBean in time:5ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfOperateServiceImpl] valid and prepared params in time:7ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.interceptor.StopProcessInterceptor] begin @StopProcess in WFBean com.yudean.mvc.service.abstr.WfAbstractService.delete(WFBean,SecureUser)
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.service.core.module.ModuleDataServiceImpl] delete in time:9ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfAbstractServiceImpl] homepageService.Delete in time:53ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfAbstractServiceImpl] delete in time:65ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] start stopProcess:1
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] queryTaskDetail in time:78ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] businessFacade.stopProcess in time:254ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] saveComment in time:74ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] iwfProcessBusinessManager.updateByProcessInstId in time:7ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] finish stopProcess:1 in time:479ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.interceptor.StopProcessInterceptor] chitaService.stopProcess in time:479ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.service.core.module.ModuleDataServiceImpl] queryById in time:3ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.service.core.module.ModuleDataServiceImpl] setItem in time:15ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.interceptor.ProcessDetailInterceptor] begin @ProcessDetail in ItcBusinessBean com.yudean.mvc.service.abstr.AbstractService.queryDetail(ItcBusinessBean,SecureUser)
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] start queryProcessDetail
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] iwfProcessBusinessManager.queryByBusinessIdAndType:testDemo testDemo_HYG_bw1vcyq2j16qmyah in time:5ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] changeWfProcessBusinessToWFBean in time:27ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.yudean.wf.service.impl.ChitaService] finish queryProcessDetail->businessType:testDemo businessId:testDemo_HYG_bw1vcyq2j16qmyah processDefKey:com.timss.hyg.pf.testDemo processInstId:1 by:timss4u in time:35ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.interceptor.ProcessDetailInterceptor] chitaService.queryProcessDetail in time:36ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.interceptor.ProcessDetailInterceptor] end @ProcessDetail in ItcBusinessBean com.yudean.mvc.service.abstr.AbstractService.queryDetail(ItcBusinessBean,SecureUser) in time:36ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.service.core.module.ModuleDataServiceImpl] updateAuditStatus in time:3ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.interceptor.StopProcessInterceptor] refreshBeanAndUpdateStatus in time:67ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.interceptor.StopProcessInterceptor] end @StopProcess in WFBean com.yudean.mvc.service.abstr.WfAbstractService.delete(WFBean,SecureUser) in time:613ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfOperateServiceImpl] invoke service operation:delete in time:624ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.WfOperateServiceImpl] finish operate:delete in time:632ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.yudean.todo.web.TodoController] do wfOperation delete in time:635ms
+2018-12-10 09:27:56 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModule in time:4ms
+2018-12-10 09:27:57 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModuleDetail in time:29ms
+2018-12-10 09:27:57 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams fixModuleByBean in time:0ms
+2018-12-10 09:27:57 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] finish getPageParams in time:33ms
+2018-12-10 09:27:57 [http-bio-8080-exec-2] [com.yudean.todo.web.TodoController] getPageParams in time:36ms
+2018-12-10 09:27:57 [http-bio-8080-exec-2] [com.yudean.todo.web.TodoController] finish operate delete in time:676ms
+2018-12-10 09:52:33 [http-bio-8080-exec-1] [com.timss.facade.service.core.module.ModuleDataServiceImpl] start queryList:testDemo of HYG
+2018-12-10 09:52:33 [http-bio-8080-exec-1] [com.timss.facade.service.core.module.ModuleDataServiceImpl] prepared params in time:0ms
+2018-12-10 09:52:33 [http-bio-8080-exec-1] [com.timss.facade.service.core.module.ModuleDataServiceImpl] do queryList in time:13ms
+2018-12-10 09:52:33 [http-bio-8080-exec-1] [com.timss.facade.service.core.module.ModuleDataServiceImpl] fix result in time:0ms
+2018-12-10 09:52:33 [http-bio-8080-exec-1] [com.timss.facade.service.core.module.ModuleDataServiceImpl] finish queryList:testDemo of HYG in time:14ms

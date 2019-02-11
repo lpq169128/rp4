@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timss.pf.dao.TrainingInfoDao">
+    <sql id="Base_Column_List">
+        F.TRAINING_ID trainingId,
+        F.TRAINING_NAME trainingName,
+        F.HANDLER handlerId,
+        U . NAME handler,
+        F.START_DATE startDate,
+        F.ADDRESS address,
+        F.DEPT_SHIP deptShip,
+        F.TEACHER teacher,
+        F. HOUR HOUR,
+        F.TRAINING_CATEGORY trainingCategory,
+        F.TRAINING_TYPE trainingType,
+        F. COST COST,
+        F.TRAINING_EFFECT trainingEffect,
+        F. CONTENT CONTENT,
+        F.REMARK remark,
+        F.CREATE_USER createuser,
+        F.CREATE_DATE createdate,
+        F.MODIFY_USER modifyuser,
+        F.MODIFY_DATE modifydate
+    </sql>
+
+    <select id="queryList" resultType="com.timss.pf.bean.TrainingInfo">
+        select<include refid="Base_Column_List"/>,G.NAME createusername
+        FROM ATD_TRAINING F
+        LEFT JOIN SEC_USER G ON G .USER_ID = F.CREATE_USER
+        LEFT JOIN ATD_PERSON_INFO API ON API.USER_ID = F.HANDLER
+        LEFT JOIN SEC_USER U ON U .USER_ID = API.USER_ID
+        where F.DEL_IND = 'N' and F.TRAINING_TYPE = 'training'
+        /*应当加入TYPE筛选条件区分培训和开航,pxjl*/
+    </select>
+    <select id="queryById" parameterType="String" resultType="com.timss.pf.bean.TrainingInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from ATD_TRAINING F
+        LEFT JOIN SEC_USER G ON G .USER_ID = F.CREATE_USER
+        LEFT JOIN ATD_PERSON_INFO API ON API."ID" = F.HANDLER
+        LEFT JOIN SEC_USER U ON U .USER_ID = API.USER_ID
+        where F.TRAINING_ID = #{businessId,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="com.timss.pf.bean.TrainingInfo">
+        insert into ATD_TRAINING
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            TRAINING_ID,
+            TRAINING_NO,
+            SITE_ID,
+            <if test="trainingName != null">
+                TRAINING_NAME,
+            </if>
+            <if test="handler != null">
+                HANDLER,
+            </if>
+            <if test="startDate != null">
+                START_DATE,
+            </if>
+            <if test="address != null">
+                ADDRESS,
+            </if>
+            <if test="deptShip != null">
+                DEPT_SHIP,
+            </if>
+            <if test="teacher != null">
+                TEACHER,
+            </if>
+            <if test="hour != null">
+                HOUR,
+            </if>
+            <if test="trainingCategory != null">
+                TRAINING_CATEGORY,
+            </if>
+            <if test="trainingType != null">
+                TRAINING_TYPE,
+            </if>
+            <if test="cost != null">
+                COST,
+            </if>
+            <if test="trainingEffect != null">
+                TRAINING_EFFECT,
+            </if>
+            <if test="content != null">
+                CONTENT,
+            </if>
+            <if test="remark != null">
+                REMARK,
+            </if>
+            CREATE_USER,MODIFY_USER,CREATE_DATE,MODIFY_DATE,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{trainingId,jdbcType=VARCHAR},
+            #{trainingNo,jdbcType=VARCHAR},
+            #{siteid,jdbcType=VARCHAR},
+            <if test="trainingName != null">
+                #{trainingName,jdbcType=VARCHAR},
+            </if>
+            <if test="handler != null">
+                #{handler,jdbcType=VARCHAR},
+            </if>
+            <if test="startDate != null">
+                #{startDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="deptShip != null">
+                #{deptShip,jdbcType=VARCHAR},
+            </if>
+            <if test="teacher != null">
+                #{teacher,jdbcType=VARCHAR},
+            </if>
+            <if test="hour != null">
+                #{hour,jdbcType=VARCHAR},
+            </if>
+            <if test="trainingCategory != null">
+                #{trainingCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="trainingType != null">
+                #{trainingType,jdbcType=VARCHAR},
+            </if>
+            <if test="cost != null">
+                #{cost,jdbcType=VARCHAR},
+            </if>
+            <if test="trainingEffect != null">
+                #{trainingEffect,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            #{createuser,jdbcType=VARCHAR},
+            #{modifyuser,jdbcType=VARCHAR},
+            #{createdate,jdbcType=TIMESTAMP},
+            #{modifydate,jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.timss.pf.bean.TrainingInfo">
+        update ATD_TRAINING set
+        <if test="trainingNo != null">
+            TRAINING_NO = #{trainingNo,jdbcType=VARCHAR},
+        </if>
+        <if test="trainingName != null">
+            TRAINING_NAME = #{trainingName,jdbcType=VARCHAR},
+        </if>
+        <if test="handler != null">
+            HANDLER = #{handler,jdbcType=VARCHAR},
+        </if>
+        <if test="startDate != null">
+            START_DATE = #{startDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="address != null">
+            ADDRESS = #{address,jdbcType=VARCHAR},
+        </if>
+        <if test="deptShip != null">
+            DEPT_SHIP = #{deptShip,jdbcType=VARCHAR},
+        </if>
+        <if test="teacher != null">
+            TEACHER = #{teacher,jdbcType=VARCHAR},
+        </if>
+        <if test="hour != null">
+            HOUR = #{hour,jdbcType=VARCHAR},
+        </if>
+        <if test="trainingCategory != null">
+            TRAINING_CATEGORY = #{trainingCategory,jdbcType=VARCHAR},
+        </if>
+        <!--<if test="trainingType != null">类别没必要更新
+            TRAINING_TYPE = #{trainingType,jdbcType=VARCHAR},
+        </if>-->
+        <if test="cost != null">
+            COST = #{cost,jdbcType=VARCHAR},
+        </if>
+        <if test="trainingEffect != null">
+            TRAINING_EFFECT = #{trainingEffect,jdbcType=VARCHAR},
+        </if>
+        <if test="content != null">
+            CONTENT = #{content,jdbcType=VARCHAR},
+        </if>
+        <if test="remark != null">
+            REMARK = #{remark,jdbcType=VARCHAR},
+        </if>
+        MODIFY_USER = #{modifyuser,jdbcType=VARCHAR},
+        MODIFY_DATE = #{modifydate,jdbcType=TIMESTAMP}
+        where TRAINING_ID=#{trainingId,jdbcType=VARCHAR}
+    </update>
+
+    <update id="delete">
+		update ATD_TRAINING
+		set DEL_IND='Y', MODIFY_USER=#{modifyuser,jdbcType=VARCHAR}, MODIFY_DATE=#{modifydate,jdbcType=TIMESTAMP}
+		where TRAINING_ID=#{businessId,jdbcType=VARCHAR}
+	</update>
+
+
+    <select id="queryTrainingInfoById" parameterType="String" resultType="com.timss.pf.bean.TrainingInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from ATD_TRAINING F
+        LEFT JOIN ATD_PERSON_INFO API ON API."ID" = F.HANDLER
+        LEFT JOIN SEC_USER U ON U .USER_ID = API.USER_ID
+        where F.TRAINING_ID = #{businessId,jdbcType=VARCHAR}
+        order by F.START_DATE desc
+    </select>
+</mapper>

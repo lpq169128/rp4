@@ -1,0 +1,15 @@
+2018-12-07 08:38:40 [http-bio-8080-exec-9] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModule in time:57ms
+2018-12-07 08:38:40 [http-bio-8080-exec-9] [com.timss.facade.service.abstr.AbstractServiceImpl] finish getPageParams in time:59ms
+2018-12-07 11:39:43 [http-bio-8080-exec-9] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModule in time:7ms
+2018-12-07 11:39:43 [http-bio-8080-exec-9] [com.timss.facade.service.abstr.AbstractServiceImpl] finish getPageParams in time:8ms
+2018-12-07 11:53:53 [http-bio-8080-exec-4] [com.timss.facade.service.abstr.AbstractServiceImpl] convertBean JSON.parseObject in time:318ms
+2018-12-07 11:53:53 [http-bio-8080-exec-4] [com.timss.facade.service.abstr.AbstractServiceImpl] convertBean getModule in time:4ms
+2018-12-07 11:53:53 [http-bio-8080-exec-4] [com.timss.facade.service.abstr.AbstractServiceImpl] finish convertBean in time:336ms
+2018-12-07 11:55:39 [http-bio-8080-exec-5] [com.timss.facade.service.abstr.AbstractServiceImpl] getPageParams getModule in time:4ms
+2018-12-07 11:55:39 [http-bio-8080-exec-5] [com.timss.facade.service.abstr.AbstractServiceImpl] finish getPageParams in time:4ms
+2018-12-07 11:57:30 [http-bio-8080-exec-6] [com.timss.facade.service.abstr.AbstractServiceImpl] convertBean JSON.parseObject in time:33ms
+2018-12-07 11:57:30 [http-bio-8080-exec-6] [com.timss.facade.service.abstr.AbstractServiceImpl] convertBean getModule in time:7ms
+2018-12-07 11:57:30 [http-bio-8080-exec-6] [com.timss.facade.service.abstr.AbstractServiceImpl] finish convertBean in time:41ms
+2018-12-07 11:59:00 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] convertBean JSON.parseObject in time:1ms
+2018-12-07 11:59:00 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] convertBean getModule in time:4ms
+2018-12-07 11:59:00 [http-bio-8080-exec-2] [com.timss.facade.service.abstr.AbstractServiceImpl] finish convertBean in time:6ms
