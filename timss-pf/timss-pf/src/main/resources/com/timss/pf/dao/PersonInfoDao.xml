@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timss.pf.dao.PersonInfoDao">
+
+    <sql id="Base_Column_List">
+		S.ID  businessId,
+		S.USER_ID  userId,
+		S.PINYIN  pinyin,
+		S.SEX  sex,
+		S.BIRTHDAY  birthday,
+		S.ID_CARD  idCard,
+		S.POLITICAL_FACE  politicalFace,
+		S.NATIONALITY  nationality,
+		S.GRADUATE_SCHOOL  graduateSchool,
+		S.HIGHEST_EDUCATION  highestEducation,
+		S.WORK_DATE  workDate,
+		S.ADDRESS  address,
+	    S.POSTALCODE  postalCode,
+	    S.HEALTH  health,
+	    S.FAMILY_HISTORY  familyHistory,
+	    S.HISTORY  history,
+	    S.COMPANY  originalWorkUnit,
+	    S.JOB_STATUS  jobStatus,
+		S.CREATE_USER createuser,
+		S.CREATE_DATE createdate,
+		S.MODIFY_USER modifyuser,
+		S.MODIFY_DATE modifydate,
+		S.SITE_ID siteid,
+		S.DEPT_ID deptid,
+        S.B_STATUS businessStatus,
+		S.DEL_IND delind,
+		S.SPECIALTY specialty,
+		S.MARITAL_STATUS maritalStatus,
+		S.REGISTER_ADDRESS registerAddress,
+		S.WORK_NATURE  workNature,
+		S.REGISTER_TYPE registerType,
+		S.HISTORY_NAME historyName
+	</sql>
+
+    <select id="queryList" resultType="com.timss.pf.bean.PersonInfo">
+        select<include refid="Base_Column_List"/>,U.NAME name,U.ATTRIBUTE2 arrivalDate,U.MOBILE mobile,F.INSHIP_STATUS
+        inshipStatus,G.NAME createusername
+        from ATD_PERSON_INFO S
+        left join SEC_USER U on U.USER_ID = S.USER_ID
+        left join SEC_USER G on G.USER_ID = S.CREATE_USER
+        left join ATD_PERSON_SAILOR_FILE F on F.PERSON_ID=S.ID
+        where S.DEL_IND = 'N'
+        order by NLSSORT(U."NAME",'NLS_SORT = SCHINESE_PINYIN_M')
+    </select>
+    <select id="queryById" parameterType="String" resultType="com.timss.pf.bean.PersonInfo">
+        select<include refid="Base_Column_List"/>,U.NAME name,U.ATTRIBUTE2 arrivalDate,U.MOBILE mobile
+        from ATD_PERSON_INFO S
+        left join SEC_USER U on U.USER_ID = S.USER_ID
+        where S.ID = #{businessId,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insert" parameterType="com.timss.pf.bean.PersonInfo">
+		insert into ATD_PERSON_INFO(
+			ID,USER_ID,PINYIN,SEX,BIRTHDAY,ID_CARD,POLITICAL_FACE,NATIONALITY,GRADUATE_SCHOOL,
+			HIGHEST_EDUCATION,WORK_DATE,ADDRESS,POSTALCODE,HEALTH,FAMILY_HISTORY,HISTORY,CREATE_USER,
+			CREATE_DATE,SITE_ID,MODIFY_USER,MODIFY_DATE,DEPT_ID,B_STATUS,DEL_IND,COMPANY,SPECIALTY,MARITAL_STATUS,
+			REGISTER_ADDRESS,WORK_NATURE,REGISTER_TYPE,HISTORY_NAME,JOB_STATUS
+		)values(
+			#{businessId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{pinyin,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR},
+			#{birthday,jdbcType=TIMESTAMP}, #{idCard,jdbcType=VARCHAR}, #{politicalFace,jdbcType=VARCHAR}, #{nationality,jdbcType=VARCHAR},
+			#{graduateSchool,jdbcType=VARCHAR}, #{highestEducation,jdbcType=VARCHAR}, #{workDate,jdbcType=TIMESTAMP}, #{address,jdbcType=VARCHAR},
+			#{postalCode,jdbcType=VARCHAR},#{health,jdbcType=VARCHAR},#{familyHistory,jdbcType=VARCHAR},#{history,jdbcType=VARCHAR},
+			#{createuser,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{siteid,jdbcType=VARCHAR}, #{modifyuser,jdbcType=VARCHAR},
+			#{modifydate,jdbcType=TIMESTAMP}, #{deptid,jdbcType=VARCHAR}, #{businessStatus,jdbcType=VARCHAR},#{delind,jdbcType=VARCHAR},#{originalWorkUnit,jdbcType=VARCHAR},
+			#{specialty,jdbcType=VARCHAR}, #{maritalStatus,jdbcType=VARCHAR}, #{registerAddress,jdbcType=VARCHAR},#{workNature,jdbcType=VARCHAR},#{registerType,jdbcType=VARCHAR},
+			#{historyName,jdbcType=VARCHAR},#{jobStatus,jdbcType=VARCHAR}
+		)
+	</insert>
+
+    <update id="update" parameterType="com.timss.pf.bean.PersonInfo">
+		update ATD_PERSON_INFO
+		set USER_ID=#{userId,jdbcType=VARCHAR},PINYIN=#{pinyin,jdbcType=VARCHAR}, SEX=#{sex,jdbcType=VARCHAR},
+			BIRTHDAY=#{birthday,jdbcType=TIMESTAMP}, ID_CARD=#{idCard,jdbcType=VARCHAR}, POLITICAL_FACE=#{politicalFace,jdbcType=VARCHAR},
+			NATIONALITY=#{nationality,jdbcType=VARCHAR}, GRADUATE_SCHOOL=#{graduateSchool,jdbcType=VARCHAR},
+			HIGHEST_EDUCATION=#{highestEducation,jdbcType=VARCHAR},WORK_DATE=#{workDate,jdbcType=TIMESTAMP},
+			ADDRESS=#{address,jdbcType=VARCHAR}, POSTALCODE=#{postalCode,jdbcType=VARCHAR}, HEALTH=#{health,jdbcType=VARCHAR},
+			FAMILY_HISTORY=#{familyHistory,jdbcType=VARCHAR}, HISTORY=#{history,jdbcType=VARCHAR},
+			 MODIFY_USER=#{modifyuser,jdbcType=VARCHAR},
+			MODIFY_DATE=#{modifydate,jdbcType=TIMESTAMP},B_STATUS=#{businessStatus,jdbcType=VARCHAR},COMPANY=#{originalWorkUnit,jdbcType=VARCHAR},
+			SPECIALTY=#{specialty,jdbcType=VARCHAR}, MARITAL_STATUS=#{maritalStatus,jdbcType=VARCHAR}, REGISTER_ADDRESS=#{registerAddress,jdbcType=VARCHAR},WORK_NATURE=#{workNature,jdbcType=VARCHAR},
+			REGISTER_TYPE=#{registerType,jdbcType=VARCHAR}, HISTORY_NAME=#{historyName,jdbcType=VARCHAR}
+		where ID=#{businessId,jdbcType=VARCHAR}
+	</update>
+
+    <update id="delete">
+		update ATD_PERSON_INFO
+		set DEL_IND='Y', MODIFY_USER=#{modifyuser,jdbcType=VARCHAR}, MODIFY_DATE=#{modifydate,jdbcType=TIMESTAMP}
+		where ID=#{businessId,jdbcType=VARCHAR}
+	</update>
+
+
+    <update id="updateJobStatus" parameterType="com.timss.pf.bean.PersonInfo">
+		update ATD_PERSON_INFO
+		set JOB_STATUS=#{jobStatus,jdbcType=VARCHAR}
+		where ID=#{businessId,jdbcType=VARCHAR}
+	</update>
+    <select id="queryAllPersonInfo" parameterType="java.lang.String" resultType="com.timss.pf.bean.PersonInfo">
+                SELECT
+            U ."NAME" name,
+            U .USER_ID userId
+        FROM
+            ATD_PERSON_INFO S
+        LEFT JOIN SEC_USER U ON U .USER_ID = S.USER_ID
+        LEFT JOIN ATD_PERSON_SAILOR_FILE A ON A.PERSON_ID=S.ID
+        WHERE
+            U ."NAME" LIKE '%${inputStr}%'
+        AND S.DEL_IND = 'N' AND A.INSHIP_STATUS='IN'
+        UNION
+            SELECT
+                U ."NAME" name,
+                U .USER_ID userId
+            FROM
+                ATD_PERSON_INFO S
+            LEFT JOIN SEC_USER U ON U .USER_ID = S.USER_ID
+            LEFT JOIN ATD_PERSON_SAILOR_FILE A ON A.PERSON_ID=S.ID
+            WHERE
+                U .USER_ID LIKE '%${inputStr}%'
+            AND S.DEL_IND = 'N' AND A.INSHIP_STATUS='IN'
+	</select>
+
+    <select id="queryAllPersonInfoByKw" parameterType="java.lang.String" resultType="com.timss.pf.bean.PersonInfo">
+                SELECT
+            U ."NAME" name,
+            U .USER_ID userId
+        FROM
+            ATD_PERSON_INFO S
+        LEFT JOIN SEC_USER U ON U .USER_ID = S.USER_ID
+        LEFT JOIN ATD_PERSON_SAILOR_FILE A ON A.PERSON_ID=S.ID
+        WHERE
+            U ."NAME" LIKE '%${inputStr}%'
+        AND S.DEL_IND = 'N'
+        UNION
+            SELECT
+                U ."NAME" name,
+                U .USER_ID userId
+            FROM
+                ATD_PERSON_INFO S
+            LEFT JOIN SEC_USER U ON U .USER_ID = S.USER_ID
+            LEFT JOIN ATD_PERSON_SAILOR_FILE A ON A.PERSON_ID=S.ID
+            WHERE
+                U .USER_ID LIKE '%${inputStr}%'
+            AND S.DEL_IND = 'N'
+	</select>
+
+    <select id="queryAllPersonInfoByHire" parameterType="java.lang.String" resultType="com.timss.pf.bean.PersonInfo">
+                SELECT
+            U ."NAME" name,
+            U .USER_ID userId
+        FROM
+            ATD_PERSON_INFO S
+        LEFT JOIN SEC_USER U ON U .USER_ID = S.USER_ID
+        WHERE
+            U ."NAME" LIKE '%${inputStr}%'
+          AND S.DEL_IND = 'N'
+          and S.JOB_STATUS='N'
+        UNION
+            SELECT
+                U ."NAME" name,
+                U .USER_ID userId
+            FROM
+                ATD_PERSON_INFO S
+            LEFT JOIN SEC_USER U ON U .USER_ID = S.USER_ID
+            WHERE
+                U .USER_ID LIKE '%${inputStr}%'
+            AND S.DEL_IND = 'N'
+            and S.JOB_STATUS='N'
+	</select>
+    <!--根据id获得船员详细信息-->
+    <select id="queryPersonInfoByUserId" parameterType="String" resultType="com.timss.pf.bean.PersonInfo">
+        select<include refid="Base_Column_List"/>,U.NAME name,U.ATTRIBUTE2 arrivalDate,U.MOBILE mobile
+        from ATD_PERSON_INFO S
+        left join SEC_USER U on U.USER_ID = S.USER_ID
+        where S.USER_ID = #{userId,jdbcType=VARCHAR}
+        AND S.SITE_ID=#{siteid,jdbcType=VARCHAR}
+    </select>
+
+    <select id="queryPersoninfoIdcard" parameterType="String" resultType="com.timss.pf.bean.PersonInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from ATD_PERSON_INFO S
+        where S.ID_CARD = #{idCard,jdbcType=VARCHAR}
+        AND S.DEL_IND = 'N'
+    </select>
+
+
+    <select id="queryPersonInfoByJobStatus" parameterType="java.lang.String" resultType="com.timss.pf.bean.PersonInfo">
+        SELECT
+        	S."ID" businessId,
+            U ."NAME" name,
+            U .USER_ID userId
+        FROM
+            ATD_PERSON_INFO S
+        LEFT JOIN SEC_USER U ON U .USER_ID = S.USER_ID
+        WHERE
+            U ."NAME" LIKE '%${inputStr}%'
+        AND S.DEL_IND = 'N' AND S.JOB_STATUS = 'Y'
+        UNION
+            SELECT
+            	S."ID" businessId,
+                U ."NAME" name,
+                U .USER_ID userId
+            FROM
+                ATD_PERSON_INFO S
+            LEFT JOIN SEC_USER U ON U .USER_ID = S.USER_ID
+            WHERE
+                U .USER_ID LIKE '%${inputStr}%'
+            AND S.DEL_IND = 'N' AND S.JOB_STATUS = 'Y'
+	</select>
+
+    <select id="queryPersonInfoAll" parameterType="java.lang.String" resultType="com.timss.pf.bean.PersonInfo">
+        SELECT
+        	S."ID" businessId,
+            U ."NAME" name,
+            U .USER_ID userId
+        FROM
+            ATD_PERSON_INFO S
+        LEFT JOIN SEC_USER U ON U .USER_ID = S.USER_ID
+        WHERE
+            U ."NAME" LIKE '%${inputStr}%'
+        AND S.DEL_IND = 'N'
+        UNION
+            SELECT
+            	S."ID" businessId,
+                U ."NAME" name,
+                U .USER_ID userId
+            FROM
+                ATD_PERSON_INFO S
+            LEFT JOIN SEC_USER U ON U .USER_ID = S.USER_ID
+            WHERE
+                U .USER_ID LIKE '%${inputStr}%'
+            AND S.DEL_IND = 'N'
+	</select>
+</mapper>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timss.pf.dao.HireInfoDao">
+
+    <sql id="Base_Column_List">
+		S.ID  businessId,
+		S.RECRUIT_TYPE  recruitType,
+		S.DUTIES  duties,
+		S.HANDOVER_USER  handoverUser,
+		S.SHIP_ID  shipId,
+		S.IN_SHIP_DATE  inShipDate,
+		S.REMARK  remark,
+		S.BUSINESS_NO  businessNo,
+		S.PROCESS_INST_ID  processInstId,
+		S.CREATE_DATE  createdate,
+		S.SITE_ID  siteid,
+		S.MODIFY_USER  modifyuser,
+	    S.MODIFY_DATE  modifydate,
+	    S.DEPT_ID  deptid,
+	    S.B_STATUS  businessStatus,
+	    S.WF_STATUS  wfStatus,
+	    S.DEL_IND  delInd,
+	    S.CREATE_USER  createuser
+	</sql>
+
+    <insert id="insert" parameterType="com.timss.pf.bean.HireInfo">
+		insert into ATD_RECRUIT_INFO(
+			ID,RECRUIT_TYPE,DUTIES,HANDOVER_USER,SHIP_ID,IN_SHIP_DATE,REMARK,BUSINESS_NO,PROCESS_INST_ID,
+			CREATE_DATE,SITE_ID,DEPT_ID,B_STATUS,WF_STATUS,DEL_IND,
+			CREATE_USER
+		)values(
+			#{businessId,jdbcType=VARCHAR}, #{recruitType,jdbcType=VARCHAR}, #{duties,jdbcType=VARCHAR}, #{handoverUser,jdbcType=VARCHAR},
+			#{shipId,jdbcType=VARCHAR}, #{inShipDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{businessNo,jdbcType=VARCHAR},
+			#{processInstId,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{siteid,jdbcType=VARCHAR},
+			#{deptid,jdbcType=VARCHAR},#{businessStatus,jdbcType=VARCHAR},#{wfStatus,jdbcType=VARCHAR},
+			'N', #{createuser,jdbcType=VARCHAR}
+		)
+	</insert>
+    <update id="update" parameterType="com.timss.pf.bean.HireInfo">
+		update ATD_RECRUIT_INFO
+		set RECRUIT_TYPE=#{recruitType,jdbcType=VARCHAR},DUTIES=#{duties,jdbcType=VARCHAR}, HANDOVER_USER=#{handoverUser,jdbcType=VARCHAR},
+			SHIP_ID=#{shipId,jdbcType=VARCHAR}, IN_SHIP_DATE=#{inShipDate,jdbcType=TIMESTAMP}, REMARK=#{remark,jdbcType=VARCHAR},
+			BUSINESS_NO=#{businessNo,jdbcType=VARCHAR}, PROCESS_INST_ID=#{processInstId,jdbcType=VARCHAR},
+			MODIFY_USER=#{modifyuser,jdbcType=VARCHAR},
+			MODIFY_DATE=#{createdate,jdbcType=TIMESTAMP}
+		where ID=#{businessId,jdbcType=VARCHAR}
+
+	</update>
+    <select id="queryById" parameterType="String" resultType="com.timss.pf.bean.HireInfo">
+        select<include refid="Base_Column_List"/>,G.NAME createusername
+        from ATD_RECRUIT_INFO S
+        left join SEC_USER G on G.USER_ID = S.CREATE_USER
+        where S.ID=#{businessId,jdbcType=VARCHAR}
+        order by S.IN_SHIP_DATE desc
+    </select>
+    <update id="updateAuditStatus">
+        update ATD_RECRUIT_INFO S
+        set S.MODIFY_USER=#{modifyuser,jdbcType=VARCHAR}, S.MODIFY_DATE=#{modifydate,jdbcType=TIMESTAMP},
+        <if test="processInstId != null and processInstId != '' ">
+            S.PROCESS_INST_ID=#{processInstId,jdbcType=VARCHAR},
+        </if>
+        S.WF_STATUS=#{wfStatus,jdbcType=VARCHAR}
+        where S.ID=#{businessId,jdbcType=VARCHAR}
+    </update>
+    <select id="queryList" resultType="com.timss.pf.bean.HireInfo">
+        select<include refid="Base_Column_List"/>,G.NAME createusername
+        from ATD_RECRUIT_INFO S
+        left join SEC_USER G on G.USER_ID = S.CREATE_USER
+        where S.DEL_IND='N'
+        and S.WF_STATUS not in ('草稿','作废')
+        order by S.RECRUIT_TYPE desc
+    </select>
+    <update id="delete">
+		update ATD_RECRUIT_INFO
+		set DEL_IND='Y', MODIFY_USER=#{modifyuser,jdbcType=VARCHAR}, MODIFY_DATE=#{modifydate,jdbcType=TIMESTAMP}
+		where ID=#{businessId,jdbcType=VARCHAR}
+	</update>
+    <!--得到公司的所有组织单位-->
+    <select id="selectWokeChildrenByParentCode" resultType="Organization">
+		select SO.ORG_CODE as code,
+		   SO.NAME,SO.SHORT_NAME as shortName,
+		   SO.RANK,SO.SORT_NUM as sortNum,
+		   SO.PARENT_CODE as parentCode,
+		   SO.SYNC_IND as syncInd,
+		   SO.TYPE AS type
+		from SEC_ORGANIZATION SO
+		where SO.DEL_IND='N'
+		and SO.PARENT_CODE like '%${orgCode}%'
+		order by NLSSORT(SO.NAME,'NLS_SORT = SCHINESE_PINYIN_M')
+	</select>
+
+    <!--得到公司的所有班组-->
+    <select id="queryTeamBySiteId" resultType="Organization">
+			SELECT
+			R.ORG_CODE as code,
+		   R.NAME,R.SHORT_NAME as shortName,
+		   R.RANK,R.SORT_NUM as sortNum,
+		   R.PARENT_CODE as parentCode,
+		   R.SYNC_IND as syncInd,
+		   R.TYPE AS type
+			FROM
+			SEC_ORGANIZATION R
+			WHERE
+			R.PARENT_CODE = ANY (
+			SELECT
+			S.ORG_CODE
+			FROM
+			SEC_ORGANIZATION S
+			WHERE
+			S.PARENT_CODE = ANY (
+			SELECT
+			F.ORG_CODE
+			FROM
+			SEC_ORGANIZATION F
+			WHERE
+			F.PARENT_CODE = (
+			SELECT
+			L.ORG_CODE
+			FROM
+			SEC_ORGANIZATION L
+			LEFT JOIN SEC_SITE_ORGANIZATION O ON O.ORG_CODE = L.ORG_CODE
+			WHERE
+			O.SITE_ID = #{siteId,jdbcType=VARCHAR}
+			)
+			)
+			)
+			ORDER BY
+			 NLSSORT(R.NAME,'NLS_SORT = SCHINESE_PINYIN_M')
+		</select>
+</mapper>

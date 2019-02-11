@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timss.pf.dao.PersonExamineDao">
+
+    <sql id="Base_Column_List">
+		S.ID  businessId,
+		S.PERSON_ID  personId,
+		S.SHIP_ID  shipId,
+		S.DUTIES  duties,
+		S.TEST_LEVEL  testLevel,
+		S.ON_JOB_DATE  onJobDate,
+		S.IS_FINISH_CONTRACT isFinishContract,
+		S.DESCRIPTION description,
+		S.BUSINESS_NO  businessNo,
+		S.PROCESS_INST_ID  processInstId,
+		S.CREATE_USER  createuser,
+		S.CREATE_DATE  createdate,
+		S.SITE_ID  siteid,
+		S.MODIFY_USER  modifyuser,
+	    S.MODIFY_DATE  modifydate,
+	    S.DEPT_ID  deptid,
+	    S.B_STATUS  businessStatus,
+	    S.WF_STATUS  wfStatus,
+	    S.DEL_IND  delInd
+	</sql>
+
+    <insert id="insert" parameterType="com.timss.pf.bean.PersonExamine">
+		insert into ATD_PERSON_EXAMINE(
+			ID,PERSON_ID,SHIP_ID,DUTIES,TEST_LEVEL,ON_JOB_DATE,IS_FINISH_CONTRACT,DESCRIPTION,BUSINESS_NO,PROCESS_INST_ID,
+		    CREATE_USER,CREATE_DATE,SITE_ID,DEPT_ID,B_STATUS,WF_STATUS,DEL_IND
+		)values(
+			#{businessId,jdbcType=VARCHAR}, #{personId,jdbcType=VARCHAR}, #{shipId,jdbcType=VARCHAR},#{duties,jdbcType=VARCHAR}, #{testLevel,jdbcType=VARCHAR},
+			 #{onJobDate,jdbcType=VARCHAR}, #{isFinishContract,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR}, #{businessNo,jdbcType=VARCHAR},
+			#{processInstId,jdbcType=VARCHAR},#{createuser,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{siteid,jdbcType=VARCHAR},
+			#{deptid,jdbcType=VARCHAR},#{businessStatus,jdbcType=VARCHAR},#{wfStatus,jdbcType=VARCHAR},'N'
+		)
+	</insert>
+    <update id="update" parameterType="com.timss.pf.bean.PersonExamine">
+		update ATD_PERSON_EXAMINE
+		set ID=#{businessId,jdbcType=VARCHAR}, PERSON_ID=#{personId,jdbcType=VARCHAR}, SHIP_ID=#{shipId,jdbcType=VARCHAR},DUTIES=#{duties,jdbcType=VARCHAR}, TEST_LEVEL=#{testLevel,jdbcType=VARCHAR},
+			 ON_JOB_DATE=#{onJobDate,jdbcType=VARCHAR}, IS_FINISH_CONTRACT=#{isFinishContract,jdbcType=VARCHAR},DESCRIPTION=#{description,jdbcType=VARCHAR}, BUSINESS_NO=#{businessNo,jdbcType=VARCHAR},
+			PROCESS_INST_ID=#{processInstId,jdbcType=VARCHAR},
+			MODIFY_USER=#{modifyuser,jdbcType=VARCHAR},
+			MODIFY_DATE=#{createdate,jdbcType=TIMESTAMP}
+		where ID=#{businessId,jdbcType=VARCHAR}
+
+	</update>
+    <select id="queryById" parameterType="String" resultType="com.timss.pf.bean.PersonExamine">
+        select<include refid="Base_Column_List"/>,U.NAME name,A.SEX sex,A.BIRTHDAY birthday,
+        A.NATIONALITY nationality,G.NAME createusername
+        from ATD_PERSON_EXAMINE S left join ATD_PERSON_INFO A on S.PERSON_ID=A.ID
+        left join SEC_USER U on U.USER_ID = A.USER_ID
+        left join SEC_USER G on G.USER_ID = S.CREATE_USER
+        where S.ID=#{businessId,jdbcType=VARCHAR}
+    </select>
+    <update id="updateAuditStatus">
+        update ATD_PERSON_EXAMINE S
+        set S.MODIFY_USER=#{modifyuser,jdbcType=VARCHAR}, S.MODIFY_DATE=#{modifydate,jdbcType=TIMESTAMP},
+        <if test="processInstId != null and processInstId != '' ">
+            S.PROCESS_INST_ID=#{processInstId,jdbcType=VARCHAR},
+        </if>
+        S.WF_STATUS=#{wfStatus,jdbcType=VARCHAR}
+        where S.ID=#{businessId,jdbcType=VARCHAR}
+    </update>
+    <select id="queryList" resultType="com.timss.pf.bean.PersonExamine">
+        select<include refid="Base_Column_List"/>,G.NAME createusername,
+        W.NAME name,R.BIRTHDAY birthday,R.SEX sex
+        from ATD_PERSON_EXAMINE S
+        left join SEC_USER G on G.USER_ID = S.CREATE_USER
+        RIGHT JOIN ATD_PERSON_INFO R on R.ID=S.PERSON_ID
+        LEFT JOIN SEC_USER W on W.USER_ID = R.USER_ID
+        where S.DEL_IND='N'
+        and S.WF_STATUS not in ('草稿','作废')
+    </select>
+    <update id="delete">
+		update ATD_PERSON_EXAMINE
+		set DEL_IND='Y', MODIFY_USER=#{modifyuser,jdbcType=VARCHAR}, MODIFY_DATE=#{modifydate,jdbcType=TIMESTAMP}
+		where ID=#{businessId,jdbcType=VARCHAR}
+	</update>
+    <select id="queryPersonExamineById" parameterType="String" resultType="com.timss.pf.bean.PersonExamine">
+        select
+        <include refid="Base_Column_List"/>
+        from ATD_PERSON_EXAMINE S
+        where S.DEL_IND='N'
+        and S.WF_STATUS='已归档'
+        and S.PERSON_ID=#{personId,jdbcType=VARCHAR}
+        order by S.ON_JOB_DATE desc
+    </select>
+</mapper>

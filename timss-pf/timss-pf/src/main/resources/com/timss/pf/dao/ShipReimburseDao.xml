@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timss.pf.dao.ShipReimburseDao">
+
+    <sql id="Base_Column_List">
+	  S.BUSINESS_ID businessId,
+	  S."NAME" reimburseName,
+	  S.REMARK remark,
+	  S.SHIP_ID shipId,
+	  S.REIMABURSE_DAE reimburseDate,
+	  S.CODE businessNo,
+	  S.CREATE_USER createuser,
+	  S.CREATE_DATE createdate,
+	  S.MODIFY_USER modifyuser,
+	  S.MODIFY_DATE modifydate,
+	  S.SITE_ID siteid,
+	  S.DEPT_ID deptid,
+	  S.B_STATUS businessStatus,
+	  S.WF_STATUS wfStatus,
+	  S.PROC_INST_ID processInstId,
+	  S.DEL_IND delind
+	</sql>
+
+    <select id="queryList" resultType="com.timss.pf.bean.ShipReimburse">
+        select<include refid="Base_Column_List"/>,G.NAME createusername
+        from FIN_REIMBURSE S
+        left join SEC_USER G on G.USER_ID = S.CREATE_USER
+        where S.DEL_IND='N'
+        and S.WF_STATUS not in ('草稿','作废')
+        and S.SHIP_ID is not null
+    </select>
+    <select id="queryById" parameterType="String" resultType="com.timss.pf.bean.ShipReimburse">
+        select<include refid="Base_Column_List"/>,G.NAME createusername
+        from FIN_REIMBURSE S
+        left join SEC_USER G on G.USER_ID = S.CREATE_USER
+        where S.BUSINESS_ID = #{businessId,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="com.timss.pf.bean.ShipReimburse">
+		insert into FIN_REIMBURSE(
+			BUSINESS_ID,"NAME",REMARK,SHIP_ID,REIMABURSE_DAE,CODE,PROC_INST_ID,
+			CREATE_DATE,SITE_ID,DEPT_ID,B_STATUS,WF_STATUS,DEL_IND,CREATE_USER
+		)values(
+			#{businessId,jdbcType=VARCHAR}, #{reimburseName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{shipId,jdbcType=VARCHAR},
+			#{reimburseDate,jdbcType=TIMESTAMP},#{businessNo,jdbcType=VARCHAR},
+			#{processInstId,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{siteid,jdbcType=VARCHAR},
+			#{deptid,jdbcType=VARCHAR},#{businessStatus,jdbcType=VARCHAR},#{wfStatus,jdbcType=VARCHAR},
+			'N', #{createuser,jdbcType=VARCHAR}
+		)
+	</insert>
+    <update id="update" parameterType="com.timss.pf.bean.ShipReimburse">
+		update FIN_REIMBURSE
+		set "NAME"=#{reimburseName,jdbcType=VARCHAR},REMARK=#{remark,jdbcType=VARCHAR}, SHIP_ID=#{shipId,jdbcType=VARCHAR},
+			REIMABURSE_DAE=#{reimburseDate,jdbcType=TIMESTAMP},
+			CODE=#{businessNo,jdbcType=VARCHAR}, PROC_INST_ID=#{processInstId,jdbcType=VARCHAR},
+			MODIFY_USER=#{modifyuser,jdbcType=VARCHAR},
+			MODIFY_DATE=#{createdate,jdbcType=TIMESTAMP}
+		where BUSINESS_ID=#{businessId,jdbcType=VARCHAR}
+
+	</update>
+    <update id="updateAuditStatus">
+        update FIN_REIMBURSE S
+        set S.MODIFY_USER=#{modifyuser,jdbcType=VARCHAR}, S.MODIFY_DATE=#{modifydate,jdbcType=TIMESTAMP},
+        <if test="processInstId != null and processInstId != '' ">
+            S.PROC_INST_ID=#{processInstId,jdbcType=VARCHAR},
+        </if>
+        S.WF_STATUS=#{wfStatus,jdbcType=VARCHAR}
+        where S.BUSINESS_ID=#{businessId,jdbcType=VARCHAR}
+    </update>
+
+    <update id="delete">
+		update FIN_REIMBURSE
+		set DEL_IND='Y', MODIFY_USER=#{modifyuser,jdbcType=VARCHAR}, MODIFY_DATE=#{modifydate,jdbcType=TIMESTAMP}
+		where BUSINESS_ID=#{businessId,jdbcType=VARCHAR}
+	</update>
+</mapper>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timss.pf.dao.BeforeInstructionDao">
+    <sql id="Base_Column_List">
+        F.TRAINING_ID trainingId,
+        F.TRAINING_TYPE trainingType,
+        F.DEPT_SHIP deptShip,
+        F.content content,
+        F.attribute1 attribute1,
+        MSI.SHIP_NAME shipName,
+        ATP.DUTIES duties,
+        SU.USER_ID nameId,
+        SU.NAME name,
+        ATP.PERSON_ID,
+        ATP.DUTIES_DATE dutiesDate,
+        F.CREATE_USER createuser,
+        F.CREATE_DATE createdate,
+        F.MODIFY_USER modifyuser,
+        F.MODIFY_DATE modifydate
+    </sql>
+
+    <select id="queryList" resultType="com.timss.pf.bean.BeforeInstruction">
+        select<include refid="Base_Column_List"/>,G.NAME createusername
+        FROM
+        ATD_TRAINING F
+        LEFT JOIN MGMT_SHIP_INFO MSI ON F.DEPT_SHIP = MSI."ID"
+        LEFT JOIN ATD_TRAINING_PERSON ATP ON ATP.TRAINING_ID = F.TRAINING_ID
+        LEFT JOIN SEC_USER SU ON ATP.PERSON_ID = SU.USER_ID
+        LEFT JOIN SEC_USER G ON G .USER_ID = F.CREATE_USER
+        WHERE F.DEL_IND = 'N' AND F.TRAINING_TYPE = 'before_vayage'
+        /*应当加入TYPE筛选条件区分培训和开航*/
+    </select>
+
+    <select id="queryById" parameterType="String" resultType="com.timss.pf.bean.BeforeInstruction">
+        select
+        <include refid="Base_Column_List"/>
+        from ATD_TRAINING F
+        LEFT JOIN MGMT_SHIP_INFO MSI ON F.DEPT_SHIP = MSI."ID"
+        LEFT JOIN ATD_TRAINING_PERSON ATP ON ATP.TRAINING_ID = F.TRAINING_ID
+        LEFT JOIN SEC_USER SU ON ATP.PERSON_ID = SU.USER_ID
+        LEFT JOIN SEC_USER G ON G .USER_ID = F.CREATE_USER
+        WHERE F.DEL_IND = 'N' AND F.TRAINING_TYPE = 'before_vayage' and F.TRAINING_ID = #{businessId,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insert" parameterType="com.timss.pf.bean.BeforeInstruction">
+        insert into ATD_TRAINING
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            TRAINING_ID,
+            TRAINING_NO,
+            SITE_ID,
+            <if test="trainingType != null">
+                TRAINING_TYPE,
+            </if>
+            <if test="deptShip != null">
+                DEPT_SHIP,
+            </if>
+            <if test="content != null">
+                CONTENT,
+            </if>
+            <if test="attribute1 != null">
+                ATTRIBUTE1,
+            </if>
+            CREATE_USER,MODIFY_USER,CREATE_DATE,MODIFY_DATE,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{trainingId,jdbcType=VARCHAR},
+            #{trainingNo,jdbcType=VARCHAR},
+            #{siteid,jdbcType=VARCHAR},
+            <if test="trainingType != null">
+                #{trainingType,jdbcType=VARCHAR},
+            </if>
+            <if test="deptShip != null">
+                #{deptShip,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="attribute1 != null">
+                #{attribute1,jdbcType=VARCHAR},
+            </if>
+            #{createuser,jdbcType=VARCHAR},
+            #{modifyuser,jdbcType=VARCHAR},
+            #{createdate,jdbcType=TIMESTAMP},
+            #{modifydate,jdbcType=TIMESTAMP},
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.timss.pf.bean.BeforeInstruction">
+        update ATD_TRAINING set
+        <if test="deptShip != null">
+            DEPT_SHIP = #{deptShip,jdbcType=VARCHAR},
+        </if>
+        <if test="content != null">
+            CONTENT = #{content,jdbcType=VARCHAR},
+        </if>
+        <if test="attribute1 != null">
+            ATTRIBUTE1 = #{attribute1,jdbcType=VARCHAR},
+        </if>
+        MODIFY_USER = #{modifyuser,jdbcType=VARCHAR},
+        MODIFY_DATE = #{modifydate,jdbcType=TIMESTAMP}
+        where TRAINING_ID=#{trainingId,jdbcType=VARCHAR}
+    </update>
+
+    <update id="delete">
+		update ATD_TRAINING
+		set DEL_IND='Y', MODIFY_USER=#{modifyuser,jdbcType=VARCHAR}, MODIFY_DATE=#{modifydate,jdbcType=TIMESTAMP}
+		where TRAINING_ID=#{businessId,jdbcType=VARCHAR}
+	</update>
+</mapper>

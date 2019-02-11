@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timss.pf.dao.PersonSailorFileDao">
+
+    <sql id="Base_Column_List">
+          F.ID  businessId,
+          F.PERSON_ID  personId,
+          F.INSHIP_STATUS  inshipStatus,
+          F.SHIP_ID  shipId
+	</sql>
+    <select id="queryShip" resultType="com.timss.pf.bean.PersonSailorFile">
+		select M.ID idm,M.SHIP_NAME shipName,M.LOAD load,M.GROSS_TON grossTon,M.NATIONALITY nationalityPerson,S.SITE_NAME siteName,M.SAIL_AREA sailArea
+		from MGMT_SHIP_INFO M
+        LEFT JOIN SEC_SITE S ON M.SITE_ID=S.SITE_ID
+		where M.DEL_IND='N'
+		AND M.IS_OWN='Y'
+		AND M.SHIP_STATUS='Y'
+		order by M.SHIP_NAME desc
+	</select>
+    <select id="queryPersonSailorFileByPersonId" resultType="com.timss.pf.bean.PersonSailorFile">
+        select
+        <include refid="Base_Column_List"/>
+        from ATD_PERSON_SAILOR_FILE F
+        where F.PERSON_ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <insert id="insert" parameterType="com.timss.pf.bean.PersonSailorFile">
+		insert into ATD_PERSON_SAILOR_FILE (
+			ID,PERSON_ID,INSHIP_STATUS,SHIP_ID
+		)values(
+			#{businessId,jdbcType=VARCHAR}, #{personId,jdbcType=VARCHAR}, #{inshipStatus,jdbcType=VARCHAR}, #{shipId,jdbcType=VARCHAR}
+		)
+	</insert>
+    <update id="update" parameterType="com.timss.pf.bean.PersonSailorFile">
+		update ATD_PERSON_SAILOR_FILE
+			set ID=#{businessId,jdbcType=VARCHAR}, INSHIP_STATUS=#{inshipStatus,jdbcType=VARCHAR},SHIP_ID=#{shipId,jdbcType=VARCHAR}
+			where PERSON_ID=#{personId,jdbcType=VARCHAR}
+	</update>
+</mapper>

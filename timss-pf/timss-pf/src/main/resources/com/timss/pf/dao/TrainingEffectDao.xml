@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timss.pf.dao.TrainingEffectDao">
+    <sql id="Base_Column_List">
+        ATP.ID id,
+        ATP.TRAINING_ID trainingId,
+        ATP.TRAINING_ITEM trainingItem,
+        ATP.TRAINING_EFFECT trainingEffect,
+        ATP.END_DATE endDate,
+        ATP.TESTER tester
+	</sql>
+
+    <select id="querTrainingEffectByTrainingId" parameterType="String" resultType="com.timss.pf.bean.TrainingEffect">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        ATD_TRAINING_EFFECT ATP
+        where ATP.TRAINING_ID = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insert" parameterType="com.timss.pf.bean.TrainingEffect">
+        insert into ATD_TRAINING_EFFECT
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            ID,
+            TRAINING_ID,
+            <if test="trainingItem != null">
+                TRAINING_ITEM,
+            </if>
+            <if test="trainingEffect != null">
+                TRAINING_EFFECT,
+            </if>
+            <if test="endDate != null">
+                END_DATE,
+            </if>
+            <if test="tester != null">
+                TESTER,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{id,jdbcType=VARCHAR},
+            #{trainingId,jdbcType=VARCHAR},
+            <if test="trainingItem != null">
+                #{trainingItem,jdbcType=VARCHAR},
+            </if>
+            <if test="trainingEffect != null">
+                #{trainingEffect,jdbcType=VARCHAR},
+            </if>
+            <if test="endDate != null">
+                #{endDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tester != null">
+                #{tester,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="deleteTrainingEffectByTrainingId">
+		delete from ATD_TRAINING_EFFECT
+		where TRAINING_ID=#{id,jdbcType=VARCHAR}
+	</delete>
+</mapper>
